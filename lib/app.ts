@@ -3,7 +3,7 @@ import * as bodyParser from "body-parser";
 import { Routes } from "./routes/crm_routes";
 
 class App {
-    public app : express.Application;
+    public app;
     public routePrv : Routes = new Routes();
 
     constructor() {
