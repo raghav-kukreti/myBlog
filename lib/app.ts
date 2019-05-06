@@ -8,8 +8,8 @@ class App {
 
     constructor() {
         this.app = express();
-        this.routePrv.routes(this.app);
         this.config();
+        this.routePrv.routes(this.app);
     }
     // Ok found the big issue here
     // So like middleware must have some sorta order right so
@@ -17,8 +17,10 @@ class App {
     // needs to be the last middleware loaded.
     // makes a bit of sense because it handles GET/POST
     // so you need every auth/everyting done ok
+
+    // lmao cancel that missed brackets in json 
     private config():void  {
-        this.app.use(bodyParser.json);
+        this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
     }
 }
