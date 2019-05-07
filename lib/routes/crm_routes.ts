@@ -1,19 +1,17 @@
 import {Request, Response} from "express";
-
-export class Routes {       
+import {ContactController} from "../controllers/crm_controller";
+export class Routes {   
+    public contactController : ContactController = new ContactController();
     public routes(app): void {          
         app.route('/').get((req: Request, res: Response) => res.json({name : "hello, check check 123"}));
         
-        app.route('/contact').get((req: Request, res: Response) => res.json({contact : "get_complete.wav"}));
-        app.route('/contact').post((req: Request, res: Response) => res.json({contact : "post_complete.wav"}));
+        app.route('/contact').get((req: Request, res: Response) => this.contactController.get_contacts);
+        app.route('/contact').post((req: Request, res: Response) => this.contactController.add_contact);
 
-        app.route('/contact/:contactID')
-        .get(((req: Request, res: Response) => {
-            res.json({contact : "get_complete.wav"})
-        })).put(((req: Request, res: Response) => {
-            res.json({contact : "put_complete.wav"})
-        })).delete(((req: Request, res: Response) => {
-            res.json({contact : "delete_complete.wav"})
-        }));
+        app.route('/contact/:contactId')
+        .get(this.contactController.get_contact_id)
+        .put(this.contactController.updateContact)
+        .delete(this.contactController.deleteContact)
+
     }
 }
