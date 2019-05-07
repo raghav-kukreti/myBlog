@@ -2,7 +2,7 @@ import {Request, Response} from "express";
 import {contactSchema} from "../models/crmModel";
 import * as mongoose from "mongoose";
 
-const Contact = mongoose.Model('contact', contactSchema);
+const Contact = mongoose.model('contact', contactSchema);
 
 export class ContactController {
     public add_contact(req: Request, res: Response) : void {
